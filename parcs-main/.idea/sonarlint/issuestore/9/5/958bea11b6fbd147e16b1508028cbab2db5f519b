@@ -1,0 +1,10 @@
+
+m	java:S106
+"+Replace this use of System.out by a logger.(Û¾èÆ8®Éðîÿ1J$0b27fb17-cb6b-4fb5-bd59-f6298d4d90f4
+r	java:S106"+Replace this use of System.out by a logger.(Çîü‰úÿÿÿÿ8®Éðîÿ1J$4b619ef8-5e89-406a-9f99-d8583f278ac9
+m	java:S106"+Replace this use of System.out by a logger.(Èƒ€Å8øÉýîÿ1J$c275d10d-a04b-4cbc-9b58-63e97981fc25
+r	java:S106"+Replace this use of System.out by a logger.(¡ÝÇ˜þÿÿÿÿ8øÉýîÿ1J$4d821682-05fc-443a-b2a7-013b9df3cdcf
+f
+java:S2119"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8ùÉýîÿ1J$0f95cfbc-4cab-4c03-8a2f-c8119f8e964b
+r	java:S1061"+Replace this use of System.out by a logger.(¦Öç²ûÿÿÿÿ8ûÉýîÿ1J$1bdb9d04-76c9-41bc-b308-587aad51588f
+r	java:S1063"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8ûÉýîÿ1J$c645eb54-f498-4f3b-a9b7-5f6511c2ca6f

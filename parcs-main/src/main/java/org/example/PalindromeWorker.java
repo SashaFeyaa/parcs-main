@@ -5,6 +5,19 @@ import parcs.AMInfo;
 import parcs.channel;
 import parcs.point;
 
+// Клас Node, що використовується для передачі даних між керуючим простором і воркерами
+class Node implements java.io.Serializable {
+    public final int l;
+    public final int r;
+    public final int div;
+
+    public Node(int l, int r, int div) {
+        this.l = l;
+        this.r = r;
+        this.div = div;
+    }
+}
+
 public class PalindromeWorker implements AM {
     @Override
     public void run(AMInfo info) {

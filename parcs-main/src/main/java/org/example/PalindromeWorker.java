@@ -7,7 +7,7 @@ import parcs.channel;
 public class PalindromeWorker implements AM {
     @Override
     public void run(AMInfo info) {
-        channel c = info.parent.channel();
+        channel c = info.parent.readChannel();
         String[] subArray = (String[]) c.readObject();
 
         int count = 0;

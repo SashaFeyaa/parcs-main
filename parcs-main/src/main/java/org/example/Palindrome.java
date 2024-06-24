@@ -1,9 +1,8 @@
+package org.example;
+
+import parcs.*;
 import java.util.*;
 import java.io.File;
-import parcs.*;
-import parcs.AM;
-import parcs.AMInfo;
-import parcs.channel;
 
 public class Palindrome {
     private final static int NODES = 4;

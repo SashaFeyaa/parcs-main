@@ -3,22 +3,39 @@ package org.example;
 import parcs.AM;
 import parcs.AMInfo;
 import parcs.channel;
+import parcs.point;
 
 public class PalindromeWorker implements AM {
     @Override
     public void run(AMInfo info) {
-        channel c = info.createChannel(); // Отримання каналу через AMInfo
-        String[] subArray = (String[]) c.readObject(); // Читання об'єкту з каналу
+        point p = info.createPoint(); // Створення точки для виконання завдання
+        channel c = p.createChannel(); // Створення каналу для обміну даними
 
-        int count = 0;
-        for (String element : subArray) {
-            if (isPalindrome(element)) {
-                count++;
+        Node node = (Node) info.parent.readObject(); // Читання об'єкту Node з керуючого простору
+
+        int totalNumbers = node.r - node.l + 1;
+        int numbersPerNode = totalNumbers / ParcsJob.NODES;
+        int extra = totalNumbers % ParcsJob.NODES;
+
+        int start = node.l + node.div * numbersPerNode + Math.min(node.div, extra);
+        int end = start + numbersPerNode - 1;
+        if (node.div < extra) {
+            end += 1;
+        }
+
+        System.out.println("[" + start + " " + end + "] Build started.");
+
+        long sum = 0L;
+        for (int i = start; i <= end; i++) {
+            long x = i;
+            if (isPalindrome(Long.toString(x))) { // Перевірка на паліндром
+                System.out.println(x + " is Palindrome");
+                sum += x;
             }
         }
 
-        // Відправка результату назад до керуючого простору
-        c.write(count);
+        System.out.println("[" + start + " " + end + "] Build finished.");
+        c.write(sum); // Відправка суми паліндромів через канал
     }
 
     private boolean isPalindrome(String str) {

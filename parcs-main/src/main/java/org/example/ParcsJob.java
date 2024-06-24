@@ -39,9 +39,8 @@ public class ParcsJob {
             List<channel> channels = new ArrayList<>();
 
             for (String[] subArray : subArrays) {
-                // Створення нової точки
-                point p = curtask.createPoint();
-                p.execute("org.example.PalindromeWorker");
+                // Створення нової точки з передачею параметра кількості точок
+                point p = curtask.createPoint(numWorkers);
                 points.add(p);
 
                 // Створення каналу для спілкування з воркером

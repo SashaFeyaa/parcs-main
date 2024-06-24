@@ -7,7 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class ParcsJob {
-    public static final int NODES = 4; // Додали статичну змінну NODES
+    // Оголосити статичну константу NODES для використання в PalindromeWorker
+    public static final int NODES = 4;
 
     public static void main(String[] args) {
         try {

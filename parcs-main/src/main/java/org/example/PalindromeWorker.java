@@ -3,27 +3,11 @@ package org.example;
 import parcs.AM;
 import parcs.AMInfo;
 import parcs.channel;
-import parcs.point;
-
-// Клас Node, що використовується для передачі даних між керуючим простором і воркерами
-class Node implements java.io.Serializable {
-    public final int l;
-    public final int r;
-    public final int div;
-
-    public Node(int l, int r, int div) {
-        this.l = l;
-        this.r = r;
-        this.div = div;
-    }
-}
+import java.io.Serializable;
 
 public class PalindromeWorker implements AM {
-    @Override
-    public void run(AMInfo info) {
-        point p = info.createPoint(); // Створення точки для виконання завдання
-        channel c = p.createChannel(); // Створення каналу для обміну даними
 
+    public void run(AMInfo info) {
         Node node = (Node) info.parent.readObject(); // Читання об'єкту Node з керуючого простору
 
         int totalNumbers = node.r - node.l + 1;
@@ -40,23 +24,25 @@ public class PalindromeWorker implements AM {
 
         long sum = 0L;
         for (int i = start; i <= end; i++) {
-            long x = i;
-            if (isPalindrome(Long.toString(x))) { // Перевірка на паліндром
-                System.out.println(x + " is Palindrome");
-                sum += x;
+            if (isPalindrome(String.valueOf(i))) {
+                System.out.println(i + " is a Palindrome");
+                sum += i;
             }
         }
 
         System.out.println("[" + start + " " + end + "] Build finished.");
-        c.write(sum); // Відправка суми паліндромів через канал
+        info.parent.write(sum);
     }
 
-    private boolean isPalindrome(String str) {
-        int n = str.length();
-        for (int i = 0; i < n / 2; i++) {
-            if (str.charAt(i) != str.charAt(n - i - 1)) {
+    private boolean isPalindrome(String s) {
+        int left = 0;
+        int right = s.length() - 1;
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
                 return false;
             }
+            left++;
+            right--;
         }
         return true;
     }

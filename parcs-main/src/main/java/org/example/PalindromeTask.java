@@ -2,6 +2,8 @@ package org.example;
 
 import parcs.*;
 import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class PalindromeTask implements AM {
     private static final int NODES = 4;
@@ -42,7 +44,7 @@ public class PalindromeTask implements AM {
         }
 
         System.out.println("[" + start + " " + end + "] Build finished.");
-        info.parent.write(palindromes);
+        info.parent.write(palindromes.toArray(new String[0]));
     }
 
     private List<String> readWordsFromFile(String filename, int start, int end) {

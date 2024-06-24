@@ -23,7 +23,8 @@ public class Palindrome {
         }
         System.out.println("Waiting for result...");
         for (channel c : channels) {
-            palindromes.addAll((List<String>) c.readObject());
+            String[] partialResult = (String[]) c.readObject();
+            palindromes.addAll(Arrays.asList(partialResult));
         }
         System.out.println("Palindromes: " + palindromes);
         curtask.end();

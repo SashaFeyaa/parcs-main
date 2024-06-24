@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class ParcsJob {
     public static void main(String[] args) {
-        int numWorkers = 2; // Змінна для визначення кількості воркерів
+        int numWorkers = 10; // Кількість воркерів
 
         try {
             String serverFilePath = "server";

@@ -6,11 +6,10 @@ import java.util.*;
 public class PalindromeTask implements AM {
     private static final int NODES = 4;
 
-    private static boolean isPalindrome(int number) {
-        String str = String.valueOf(number);
-        int len = str.length();
+    private static boolean isPalindrome(String word) {
+        int len = word.length();
         for (int i = 0; i < len / 2; i++) {
-            if (str.charAt(i) != str.charAt(len - i - 1)) {
+            if (word.charAt(i) != word.charAt(len - i - 1)) {
                 return false;
             }
         }
@@ -20,27 +19,46 @@ public class PalindromeTask implements AM {
     public void run(AMInfo info) {
         Node n = (Node) info.parent.readObject();
 
-        int totalNumbers = n.r - n.l + 1;
-        int numbersPerNode = totalNumbers / NODES;
-        int extra = totalNumbers % NODES;
+        int totalWords = n.r - n.l + 1;
+        int wordsPerNode = totalWords / NODES;
+        int extra = totalWords % NODES;
 
-        int start = n.l + n.div * numbersPerNode + Math.min(n.div, extra);
-        int end = start + numbersPerNode - 1;
+        int start = n.l + n.div * wordsPerNode + Math.min(n.div, extra);
+        int end = start + wordsPerNode - 1;
         if (n.div < extra) {
             end += 1;
         }
 
         System.out.println("[" + start + " " + end + "] Build started.");
 
-        long sum = 0L;
-        for (int i = start; i <= end; i++) {
-            if (isPalindrome(i)) {
-                System.out.println(i + " is a palindrome");
-                sum += i;
+        List<String> words = readWordsFromFile("words.txt", start, end);
+
+        List<String> palindromes = new ArrayList<>();
+        for (String word : words) {
+            if (isPalindrome(word)) {
+                System.out.println(word + " is a palindrome");
+                palindromes.add(word);
             }
         }
 
         System.out.println("[" + start + " " + end + "] Build finished.");
-        info.parent.write(sum);
+        info.parent.write(palindromes);
+    }
+
+    private List<String> readWordsFromFile(String filename, int start, int end) {
+        List<String> words = new ArrayList<>();
+        try (Scanner sc = new Scanner(new File(filename))) {
+            int index = 0;
+            while (sc.hasNext() && index <= end) {
+                String word = sc.next();
+                if (index >= start && index <= end) {
+                    words.add(word);
+                }
+                index++;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return words;
     }
 }

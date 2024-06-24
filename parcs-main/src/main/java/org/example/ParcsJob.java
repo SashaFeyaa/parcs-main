@@ -1,5 +1,9 @@
 package org.example;
 
+import org.example.Node;
+import org.example.PalindromeWorker;
+
+
 import parcs.AMInfo;
 import parcs.task;
 import java.io.IOException;

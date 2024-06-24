@@ -1,4 +1,6 @@
 package org.example;
+import org.example.Node;
+
 
 import parcs.AM;
 import parcs.AMInfo;
